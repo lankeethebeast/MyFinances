@@ -1,5 +1,5 @@
 from __future__ import annotations
-
+import uuid
 from datetime import date, timedelta
 from django.db import models
 from backend.core.data.default_email_templates import (
@@ -105,3 +105,11 @@ class DefaultValues(OwnerBase):
         blank=True,
         null=True,
     )
+class Invoice(models.Model):
+    id = models.Autofield(primary_key = True)
+    @property
+    def prefix_id(self):
+        return f"inv_{uuid.uuid4().hex[:10]}"
+
+
+        
